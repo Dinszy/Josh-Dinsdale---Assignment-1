@@ -133,3 +133,38 @@ describe('--- sortNumbers() tests ---', () => {
         expect(sortNumbers(['z', 'y', 'w', 'x'])).not.toEqual(['w', 'x', 'y', 'z']);
     });
 });
+
+describe('--- countCharsInString tests ---', () => {
+    test('Valid requests', () => {
+        expect(countCharsInString('')).toStrictEqual({});
+        expect(countCharsInString('Health')).toStrictEqual({'H': 1, 'e': 1, 'a': 1, 'l': 1, 't': 1, 'h': 1});
+        expect(countCharsInString('42')).toStrictEqual({'4': 1, '2': 1});
+        expect(countCharsInString('eeeddd')).toStrictEqual({'e': 3, 'd':3}); // sequential repeating characters
+        expect(countCharsInString('ededed')).toStrictEqual({'e': 3, 'd':3}); // non-sequential repeating characters
+        expect(countCharsInString('Hello World').l).toEqual(3);
+        expect(typeof countCharsInString('example string')).toBe('object');
+        expect(typeof countCharsInString('hello').o).toBe('number');
+        expect(countCharsInString('1/*!#@')).toStrictEqual({'1': 1, '/': 1, '*': 1, '!': 1, '#': 1, '@': 1});
+    });
+
+    test('Invalid requests', () => {
+        expect(() => {
+            countCharsInString();
+        }).toThrow(); // expect an error to be thrown when no parameters provided.
+        expect(() => {
+            countCharsInString(true); // bool
+        }).toThrow();
+        expect(() => {
+            countCharsInString(false); // bool
+        }).toThrow();
+        expect(() => {
+            countCharsInString([]); // object
+        }).toThrow();
+        expect(() => {
+            countCharsInString(null);
+        }).toThrow();
+        expect(() => {
+            countCharsInString(undefined);
+        }).toThrow();
+    });
+});
