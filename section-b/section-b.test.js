@@ -59,4 +59,26 @@ describe('--- getEven() tests', () => {
         expect(getEven([86, 24, 32])).toEqual([86, 24, 32]);
         expect(getEven([13, 9, 75, 31])).toEqual([]);
     });
+
+    test('Invalid requests', () => {
+        expect(() => {
+            getEven();
+        }).toThrow(); // expect an error to be thrown when no parameters provided.
+        expect(() => {
+            getEven(true); // bool
+        }).toThrow();
+        expect(() => {
+            getEven(false); // bool
+        }).toThrow();
+        expect(() => {
+            getEven({}); // object
+        }).toThrow();
+        expect(() => {
+            getEven(null);
+        }).toThrow();
+        expect(() => {
+            getEven(undefined);
+        }).toThrow();
+
+    });
 });
