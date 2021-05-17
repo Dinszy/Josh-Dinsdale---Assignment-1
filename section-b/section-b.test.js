@@ -49,7 +49,7 @@ describe('--- largestValue() tests ---', () => {
     });
 });
 
-describe('--- getEven() tests', () => {
+describe('--- getEven() tests ---', () => {
     test('Valid requests', () => {
         expect(getEven([])).toEqual([]);
         expect(getEven([1, 2, 3, 4])).toEqual([2, 4]); // ordered mix
@@ -79,11 +79,10 @@ describe('--- getEven() tests', () => {
         expect(() => {
             getEven(undefined);
         }).toThrow();
-
     });
 });
 
-describe('--- houseForSale() tests', () => {
+describe('--- houseForSale() tests ---', () => {
     test('Valid requests', () => {
         expect(houseForSale()).toHaveProperty('bath', true);
         expect(houseForSale()).toHaveProperty('bedrooms', 4);
@@ -91,6 +90,7 @@ describe('--- houseForSale() tests', () => {
         expect(houseForSale()).toHaveProperty('kitchen.area', 20);
         expect(houseForSale()).toHaveProperty(['kitchen', 'nice.oven']);
     });
+
     test('Invalid requests', () => {
         expect(houseForSale()).not.toHaveProperty('swimming pool');
         expect(houseForSale()).not.toHaveProperty('bedrooms', 6);
@@ -98,7 +98,38 @@ describe('--- houseForSale() tests', () => {
         expect(houseForSale()).not.toHaveProperty('kitchen.area', 40);
         expect(houseForSale()).not.toHaveProperty(['kitchen', 'bathroom']);
     });
+
     test('Output type', () => {
         expect(typeof houseForSale()).toBe('object');
+    });
+});
+
+describe('--- sortNumbers() tests ---', () => {
+    test('Valid requests', () => {
+        expect(sortNumbers([])).toEqual([]);
+        expect(sortNumbers([6, 12, 1, 3, 4])).toEqual([1, 3, 4, 6, 12]);
+        expect(sortNumbers([1, 2, 3, 4])).toEqual([1, 2, 3, 4]);
+        expect(sortNumbers([3.54, 3.33, 3.55])).toEqual([3.33, 3.54, 3.55]);
+        expect(sortNumbers([3.54, 3.33, 3.55])).toHaveLength(3);
+        expect(sortNumbers([12, 10, 8, 6])).toEqual([6, 8, 10, 12]);
+    });
+
+    test('Invalid requests', () => {
+        expect(() => {
+            sortNumbers();
+        }).toThrow(); // expect an error to be thrown when no parameters provided.
+        expect(() => {
+            sortNumbers(true); // bool
+        }).toThrow();
+        expect(() => {
+            sortNumbers(false); // bool
+        }).toThrow();
+        expect(() => {
+            sortNumbers({}); // object
+        }).toThrow();
+        expect(() => {
+            sortNumbers(undefined);
+        }).toThrow();
+        expect(sortNumbers(['z', 'y', 'w', 'x'])).not.toEqual(['w', 'x', 'y', 'z']);
     });
 });
