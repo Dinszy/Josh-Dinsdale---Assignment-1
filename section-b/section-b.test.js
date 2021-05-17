@@ -82,3 +82,23 @@ describe('--- getEven() tests', () => {
 
     });
 });
+
+describe('--- houseForSale() tests', () => {
+    test('Valid requests', () => {
+        expect(houseForSale()).toHaveProperty('bath', true);
+        expect(houseForSale()).toHaveProperty('bedrooms', 4);
+        expect(houseForSale()).toHaveProperty('kitchen.amenities', ['oven', 'stove', 'washer']);
+        expect(houseForSale()).toHaveProperty('kitchen.area', 20);
+        expect(houseForSale()).toHaveProperty(['kitchen', 'nice.oven']);
+    });
+    test('Invalid requests', () => {
+        expect(houseForSale()).not.toHaveProperty('swimming pool');
+        expect(houseForSale()).not.toHaveProperty('bedrooms', 6);
+        expect(houseForSale()).not.toHaveProperty('kitchen.amenities', ['kettle', 'fridge']);
+        expect(houseForSale()).not.toHaveProperty('kitchen.area', 40);
+        expect(houseForSale()).not.toHaveProperty(['kitchen', 'bathroom']);
+    });
+    test('Output type', () => {
+        expect(typeof houseForSale()).toBe('object');
+    });
+});
